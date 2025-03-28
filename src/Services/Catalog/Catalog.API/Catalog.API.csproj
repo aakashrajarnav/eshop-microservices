@@ -17,12 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Products\DeleteProduct\" />
-    <Folder Include="Products\GetProductByCategory\" />
-    <Folder Include="Products\UpdateProduct\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj" />
   </ItemGroup>
 
