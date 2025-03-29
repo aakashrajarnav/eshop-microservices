@@ -14,14 +14,13 @@
             RuleFor(x => x.Price).GreaterThan(0).WithMessage("Price must be greater than 0");
         }
     }
-    public class CreateProductCommandHandler(IDocumentSession session, ILogger<CreateProductCommandHandler> logger) : ICommandHandler<CreateProductCommand, CreateProductResult>
+    public class CreateProductCommandHandler(IDocumentSession session) : ICommandHandler<CreateProductCommand, CreateProductResult>
     {
         //Application logic layer
         public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
         {
             // Business logic to create a product
             //Create a product entity from command object
-            logger.LogInformation("CreateProductCommandHandler.Handle called with {@Query}", command);
 
             var product = new Product
             {
