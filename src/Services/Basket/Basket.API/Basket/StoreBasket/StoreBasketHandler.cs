@@ -12,7 +12,7 @@ namespace Basket.API.Basket.StoreBasket
             RuleFor(x => x.Cart.UserName).NotEmpty().WithMessage("UserName is required");
         }
     }
-    public class StoreBasketCommandHandler : ICommandHandler<StoreBasketCommand, StoreBasketResult>
+    public class StoreBasketCommandHandler(IBasketRepository repository) : ICommandHandler<StoreBasketCommand, StoreBasketResult>
     {
         public async Task<StoreBasketResult> Handle(StoreBasketCommand command, CancellationToken cancellationToken)
         {
@@ -20,8 +20,9 @@ namespace Basket.API.Basket.StoreBasket
 
             //TODO: store basket in database (Use Marten upsert - if exists = update, if not exists = Insert)
             //TODO: update cache
+            await repository.StoreBasket(command.Cart, cancellationToken); 
 
-            return new StoreBasketResult("abc");
+            return new StoreBasketResult(command.Cart.UserName);
         }
     }
 }
