@@ -1,6 +1,6 @@
 ﻿namespace Basket.API.Basket.CheckoutBasket
 {
-    public class CheckoutBasketEndpoint
+    public class CheckoutBasketEndpoints
     {
     }
 }
