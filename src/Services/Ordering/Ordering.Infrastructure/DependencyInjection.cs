@@ -12,13 +12,13 @@ namespace Ordering.Infrastructure
             var connectionString = configuration.GetConnectionString("Database");
 
             //Add services to the container
-            //services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
-            //services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
+            services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
+            services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
 
-            services.AddDbContext<ApplicationDbContext>((options) =>
+            services.AddDbContext<ApplicationDbContext>((sp, options) =>
             {
-                options.AddInterceptors(new AuditableEntityInterceptor());
-                //options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
+                //options.AddInterceptors(new AuditableEntityInterceptor());
+                options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
                 options.UseSqlServer(connectionString);
             });
 
